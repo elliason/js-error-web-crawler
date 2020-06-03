@@ -6,4 +6,5 @@ Gets all url links from sitemap, process and filter them and then check every ur
 1) clone repo
 2) install dependencies with ```yarn```
 3) set source sitemap path inside /src/app.js
-4) start searching for errors with ```node src/start.js```
+4) possibly set filtered urls (urls we don't want to check) inside /src/filterLinks.js
+5) start searching for errors with ```node src/start.js```
