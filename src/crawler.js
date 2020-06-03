@@ -31,7 +31,7 @@ const testPage = async (url) => {
             type: 'error',
             text: err
         });
-        console.log('page on error', err);
+        console.log('page on error', err, url);
     });
 
     page.on('pageerror', (err) => {
@@ -39,7 +39,7 @@ const testPage = async (url) => {
             type: 'pageerror',
             text: err
         });
-        console.log('page on pageerror', err);
+        console.log('page on pageerror', err, url);
     });
 
     /*page.on('console', msg => {
@@ -50,7 +50,7 @@ const testPage = async (url) => {
                 location: msg._location
             }
         });
-        // console.log('console msg', msg);
+        // console.log('console msg', msg, url);
     });*/
 
     const pageResponse = await page.goto(url, { waitUntil: 'load' });
