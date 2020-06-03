@@ -9,10 +9,6 @@ const testUrls = async (urls) => {
     console.log('testing', urls);
     const logs = [];
 
-    /*return await urls.map(url => {
-        return testPage(url);
-    });*/
-
     for (let i = 0; i < urls.length; i++) {
         const url = urls[i];
         logs.push(await testPage(url));
@@ -57,7 +53,9 @@ const testPage = async (url) => {
         }
     });
 
-    const pageResponse = await page.goto(url);
+    const pageResponse = await page.goto(url, { waitUntil: 'load' });
+    const random = Math.random().toString(36).substring(7);
+    await page.screenshot({path: 'screenshots/'+random+'_screenshot.png'});
     await browser.close();
 
     return {

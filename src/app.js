@@ -14,7 +14,7 @@ import testUrls from './testUrls';
         }).then(str => {
             const links = processSiteMap(str);
             //const devLinks = links.map(link => link.replace('www.vodafone.cz', 'vf-5058-assets-build-refactoring.vodafonecz.devbox.dev.cz'));
-            const limitedAmount = links.slice(0, 50);
+            const limitedAmount = links.slice(0, 10);
             return testUrls(limitedAmount);
         }).then(testLog => {
             console.log('test log', inspect(testLog, {
