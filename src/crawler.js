@@ -12,6 +12,7 @@ const crawler = async (urls) => {
     for (let i = 0; i < urls.length; i++) {
         const url = urls[i];
         logs.push(await testPage(url));
+        console.log('page processed', url);
     }
 
     return logs;
@@ -30,7 +31,7 @@ const testPage = async (url) => {
             type: 'error',
             text: err
         });
-        // console.log('page on error', err);
+        console.log('page on error', err);
     });
 
     page.on('pageerror', (err) => {
@@ -38,10 +39,10 @@ const testPage = async (url) => {
             type: 'pageerror',
             text: err
         });
-        // console.log('page on pageerror', err);
+        console.log('page on pageerror', err);
     });
 
-    page.on('console', msg => {
+    /*page.on('console', msg => {
         pageLogs.push({
             type: 'console',
             text: msg._text,
@@ -50,7 +51,7 @@ const testPage = async (url) => {
             }
         });
         // console.log('console msg', msg);
-    });
+    });*/
 
     const pageResponse = await page.goto(url, { waitUntil: 'load' });
     // wait 1m for browser js to execute
