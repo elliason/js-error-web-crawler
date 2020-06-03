@@ -11,7 +11,8 @@ const filterLinks = (links) => {
         '/o-vodafonu/o-spolecnosti/pro-media/tiskove-zpravy/',
         '/podminky/podminky-doplnkovych-sluzeb/',
         '/podminky/nabidky-a-akce/',
-        '/o-vodafonu/ke-stazeni/osobni-a-firemni/souteze-pravidla-a-podminky/'
+        '/o-vodafonu/ke-stazeni/osobni-a-firemni/souteze-pravidla-a-podminky/',
+        '/about-vodafone/press-releases/message-detail/'
     ];
 
     const filtered = links.filter((link) => {
