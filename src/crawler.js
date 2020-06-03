@@ -5,16 +5,14 @@ import {inspect} from 'util';
  * test urls with puppeteer
  * @param {string[]} urls
  */
-const testUrls = async (urls) => {
-    console.log('testing', urls);
+const crawler = async (urls) => {
+    console.log('urls array', urls);
     const logs = [];
 
     for (let i = 0; i < urls.length; i++) {
         const url = urls[i];
         logs.push(await testPage(url));
     }
-
-    console.log('testing logs', logs);
 
     return logs;
 }
@@ -32,7 +30,7 @@ const testPage = async (url) => {
             type: 'error',
             text: err
         });
-        console.log('page on error', err);
+        // console.log('page on error', err);
     });
 
     page.on('pageerror', (err) => {
@@ -40,29 +38,32 @@ const testPage = async (url) => {
             type: 'pageerror',
             text: err
         });
-        console.log('page on pageerror', err);
+        // console.log('page on pageerror', err);
     });
 
     page.on('console', msg => {
-        for (let i = 0; i < msg.args.length; ++i) {
-            pageLogs.push({
-                type: 'console',
-                text: `${i}: ${msg.args[i]}`
-            });
-            console.log(`${i}: ${msg.args[i]}`)
-        }
+        pageLogs.push({
+            type: 'console',
+            text: msg._text,
+            details: {
+                location: msg._location
+            }
+        });
+        // console.log('console msg', msg);
     });
 
     const pageResponse = await page.goto(url, { waitUntil: 'load' });
+    // wait 1m for browser js to execute
+    await page.waitFor(1000);
     const random = Math.random().toString(36).substring(7);
     await page.screenshot({path: 'screenshots/'+random+'_screenshot.png'});
     await browser.close();
 
     return {
         'url': url,
-        //'response': pageResponse,
+        'response code': pageResponse._status,
         'logs': pageLogs
     };
 }
 
-export default testUrls;
+export default crawler;

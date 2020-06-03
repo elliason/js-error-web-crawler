@@ -2,5 +2,5 @@ require("@babel/register")({
     // ...
 });
 
-//require("./app");
-require("./try");
+require("./app");
+//require("./try");
