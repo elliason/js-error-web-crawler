@@ -6,7 +6,6 @@
     }]
   ],
   "plugins": [
-    ["@babel/plugin-transform-runtime", { "corejs": 3 }],
-    ["@babel/plugin-transform-arrow-functions"]
+    ["@babel/plugin-transform-runtime", { "corejs": 3 }]
   ]
 }
