@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "esnext",
+    "lib": ["es6", "dom", "dom.iterable"],
+    "moduleResolution": "node",
+    "typeRoots": ["node_module/@types"],
+    "types": [
+      "node"
+    ],
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "./src/**/*"
+  ]
+}

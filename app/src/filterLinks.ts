@@ -3,7 +3,7 @@
  * @param {string[]} links
  * @return {string[]}
  */
-const filterLinks = (links) => {
+const filterLinks = (links: string[]): string[] => {
     const toFilter = [
         'uzitecne-odkazy/slovnik-pojmu',
         '/osobni/volani/roaming',

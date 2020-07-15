@@ -1,0 +1,48 @@
+{
+  "name": "pw-js-error-crawler",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "scan-web": "node ",
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@babel/plugin-transform-runtime": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/register": "^7.10.5",
+    "@babel/runtime": "^7.10.2",
+    "@babel/runtime-corejs3": "^7.10.2",
+    "@types/node": "^14.0.23",
+    "core-js": "^3.6.5",
+    "corejs": "^1.0.0",
+    "eslint": "^7.4.0",
+    "eslint-loader": "^4.0.2",
+    "isomorphic-fetch": "^2.2.1",
+    "puppeteer": "^3.3.0",
+    "rimraf": "^3.0.2",
+    "ts-loader": "^8.0.1",
+    "typescript": "^3.9.6",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-node-externals": "^2.5.0",
+    "xml-js": "^1.6.11"
+  },
+  "devDependencies": {
+    "@types/isomorphic-fetch": "^0.0.35",
+    "@types/puppeteer": "^3.0.1",
+    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/parser": "^3.6.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-import-resolver-node": "^0.3.4",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.0.5",
+    "prettier-cli": "^0.1.0",
+    "tsconfig-paths-webpack-plugin": "^3.2.0"
+  }
+}

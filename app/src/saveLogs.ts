@@ -1,8 +1,9 @@
 // import rimraf from 'rimraf';
 import path from 'path';
 import fs from 'fs';
+import InterfacePageResult from "./types/interfacePageResult";
 
-const saveLogs = (logs) => {
+const saveLogs = (logs:InterfacePageResult[]) => {
     const folder = path.resolve(__dirname, '../logs');
     const timeNow = new Date();
     const fileTitle = `log_${timeNow.getFullYear()}-${timeNow.getMonth() + 1}-${timeNow.getDate()}--${timeNow.getHours()}-${timeNow.getMinutes()}-${timeNow.getSeconds()}`;

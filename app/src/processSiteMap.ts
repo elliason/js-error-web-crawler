@@ -1,20 +1,28 @@
 import xmlJS from 'xml-js';
 
+type xmlJsElement = {
+    name?: string;
+    elements?: xmlJsElement[];
+    type?: string;
+    text?: string;
+}
+
 /**
  * Creates array of url pages to crawl from sitemap text given
  *
  * @param {string} data
  * @return {string[]}
  */
-const processSiteMap = (data) => {
+const processSiteMap = (data: string): string[] => {
     // convert xml to js
     const jsObject = xmlJS.xml2js(data);
     // extract url related elements
-    const urlSets = jsObject.elements.filter(element => {
+    const urlSets = jsObject.elements.filter((element: xmlJsElement) => {
         return element.name === 'urlset';
     });
+
     // get array of url's
-    return urlSets.reduce((carry, current) => {
+    return urlSets.reduce((carry: string[], current:xmlJsElement) => {
         if (current.elements.length > 0) {
             carry = carry.concat(getUrls(current.elements))
         }
@@ -22,7 +30,7 @@ const processSiteMap = (data) => {
     }, []);
 }
 
-const getUrls = (elements) => elements.reduce((carry, current) => {
+const getUrls = (elements: xmlJsElement[]): string[] => elements.reduce((carry:string[], current) => {
     if (current.name !== 'url' || current.elements.length === 0) {
         return;
     }

@@ -1,11 +1,13 @@
 import puppeteer from 'puppeteer';
 import {inspect} from 'util';
+import InterfacePageLog from './types/interfacePageLog';
+import InterfacePageResult from './types/interfacePageResult';
 
 /**
  * test urls with puppeteer
  * @param {string[]} urls
  */
-const crawler = async (urls) => {
+const crawler = async (urls: string[]): Promise<InterfacePageResult[]> => {
     console.log('urls array', urls);
     const logs = [];
 
@@ -20,16 +22,16 @@ const crawler = async (urls) => {
 
 /**
  * @param {string} url
- */
-const testPage = async (url) => {
-    const pageLogs = [];
+ */  
+const testPage = async (url: string): Promise<InterfacePageResult> => {
+    const pageLogs: InterfacePageLog[] = [];
     const browser = await puppeteer.launch()
-    const page = await browser.newPage()
+    const page = await browser.newPage() 
 
     page.on('error', (err) => {
         pageLogs.push({
             type: 'error',
-            text: err
+            errorData: err
         });
         console.log('page on error', err, url);
     });
@@ -37,7 +39,7 @@ const testPage = async (url) => {
     page.on('pageerror', (err) => {
         pageLogs.push({
             type: 'pageerror',
-            text: err
+            errorData: err
         });
         console.log('page on pageerror', err, url);
     });
@@ -60,9 +62,10 @@ const testPage = async (url) => {
     await page.screenshot({path: 'screenshots/'+random+'_screenshot.png'});
     await browser.close();
 
+
     return {
         'url': url,
-        'response code': pageResponse._status,
+        'responseCode': pageResponse.status(),
         'logs': pageLogs
     };
 }
