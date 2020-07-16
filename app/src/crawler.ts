@@ -1,5 +1,6 @@
+// eslint-disable-next-line import/default
 import puppeteer from 'puppeteer';
-import {inspect} from 'util';
+import { inspect } from 'util';
 import InterfacePageLog from './types/interfacePageLog';
 import InterfacePageResult from './types/interfacePageResult';
 
@@ -18,28 +19,30 @@ const crawler = async (urls: string[]): Promise<InterfacePageResult[]> => {
     }
 
     return logs;
-}
+};
 
 /**
  * @param {string} url
- */  
+ */
 const testPage = async (url: string): Promise<InterfacePageResult> => {
     const pageLogs: InterfacePageLog[] = [];
-    const browser = await puppeteer.launch()
-    const page = await browser.newPage() 
+    const browser = await puppeteer.launch({
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
+    const page = await browser.newPage();
 
-    page.on('error', (err) => {
+    page.on('error', err => {
         pageLogs.push({
             type: 'error',
-            errorData: err
+            errorData: err,
         });
         console.log('page on error', err, url);
     });
 
-    page.on('pageerror', (err) => {
+    page.on('pageerror', err => {
         pageLogs.push({
             type: 'pageerror',
-            errorData: err
+            errorData: err,
         });
         console.log('page on pageerror', err, url);
     });
@@ -58,16 +61,19 @@ const testPage = async (url: string): Promise<InterfacePageResult> => {
     const pageResponse = await page.goto(url, { waitUntil: 'load' });
     // wait 1m for browser js to execute
     await page.waitFor(1000);
-    const random = Math.random().toString(36).substring(7);
-    await page.screenshot({path: 'screenshots/'+random+'_screenshot.png'});
+    const random = Math.random()
+        .toString(36)
+        .substring(7);
+    await page.screenshot({
+        path: 'screenshots/' + random + '_screenshot.png',
+    });
     await browser.close();
 
-
     return {
-        'url': url,
-        'responseCode': pageResponse.status(),
-        'logs': pageLogs
+        url: url,
+        responseCode: pageResponse.status(),
+        logs: pageLogs,
     };
-}
+};
 
 export default crawler;

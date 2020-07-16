@@ -12,20 +12,20 @@ const filterLinks = (links: string[]): string[] => {
         '/podminky/podminky-doplnkovych-sluzeb/',
         '/podminky/nabidky-a-akce/',
         '/o-vodafonu/ke-stazeni/osobni-a-firemni/souteze-pravidla-a-podminky/',
-        '/about-vodafone/press-releases/message-detail/'
+        '/about-vodafone/press-releases/message-detail/',
     ];
 
     const filtered = links.filter((link) => {
         let pass = true;
-        toFilter.forEach(urlPart=>{
-           if (link.indexOf(urlPart) !== -1) {
-               pass = false;
-           }
+        toFilter.forEach((urlPart) => {
+            if (link.indexOf(urlPart) !== -1) {
+                pass = false;
+            }
         });
         return pass;
     });
 
     return filtered;
-}
+};
 
 export default filterLinks;

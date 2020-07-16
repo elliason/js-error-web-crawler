@@ -4,8 +4,8 @@ interface InterfacePageLog {
     details?: {
         location?: {
             url: string;
-        }
-    }
+        };
+    };
 }
 
 export default InterfacePageLog;

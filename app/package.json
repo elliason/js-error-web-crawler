@@ -4,9 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "scan-web": "node ",
+    "scan-web": "node dist/crawlerApp.js",
     "build": "webpack --mode production",
-    "build:dev": "webpack --mode development"
+    "build:dev": "webpack --mode development",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@babel/cli": "^7.10.1",
@@ -19,8 +20,6 @@
     "@types/node": "^14.0.23",
     "core-js": "^3.6.5",
     "corejs": "^1.0.0",
-    "eslint": "^7.4.0",
-    "eslint-loader": "^4.0.2",
     "isomorphic-fetch": "^2.2.1",
     "puppeteer": "^3.3.0",
     "rimraf": "^3.0.2",
@@ -36,6 +35,8 @@
     "@types/puppeteer": "^3.0.1",
     "@typescript-eslint/eslint-plugin": "^3.6.1",
     "@typescript-eslint/parser": "^3.6.1",
+    "eslint": "^7.4.0",
+    "eslint-loader": "^4.0.2",
     "eslint-config-prettier": "^6.11.0",
     "eslint-import-resolver-node": "^0.3.4",
     "eslint-import-resolver-typescript": "^2.0.0",

@@ -1,19 +1,21 @@
 // import rimraf from 'rimraf';
 import path from 'path';
 import fs from 'fs';
-import InterfacePageResult from "./types/interfacePageResult";
+import InterfacePageResult from './types/interfacePageResult';
 
-const saveLogs = (logs:InterfacePageResult[]) => {
+const saveLogs = (logs: InterfacePageResult[]) => {
     const folder = path.resolve(__dirname, '../logs');
     const timeNow = new Date();
-    const fileTitle = `log_${timeNow.getFullYear()}-${timeNow.getMonth() + 1}-${timeNow.getDate()}--${timeNow.getHours()}-${timeNow.getMinutes()}-${timeNow.getSeconds()}`;
+    const fileTitle = `log_${timeNow.getFullYear()}-${
+        timeNow.getMonth() + 1
+    }-${timeNow.getDate()}--${timeNow.getHours()}-${timeNow.getMinutes()}-${timeNow.getSeconds()}`;
     const jsonData = JSON.stringify(logs);
 
     /* rimraf(folder + '/!*', () => {
         console.log('cleaned');
     }) */
 
-    fs.writeFile(folder+'/'+fileTitle+'.json', jsonData, function(err) {
+    fs.writeFile(folder + '/' + fileTitle + '.json', jsonData, function (err) {
         if (err) {
             console.log('error while writing logs file', err);
         }

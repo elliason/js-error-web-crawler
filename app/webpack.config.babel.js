@@ -2,8 +2,8 @@ import path from 'path';
 import nodeExternals from 'webpack-node-externals';
 
 const entryObject = {
-    crawlerApp: './app.ts'
-}
+    crawlerApp: './app.ts',
+};
 const webpackConfig = (
     { mode, presets } = { mode: 'development', presets: [] },
 ) => {
@@ -12,7 +12,7 @@ const webpackConfig = (
         context: path.resolve(__dirname, 'src'),
         entry: entryObject,
         devtool: mode === 'development' ? 'hidden-source-map' : false,
-        externals: [ nodeExternals() ],
+        externals: [nodeExternals()],
         module: {
             rules: [
                 {
@@ -21,9 +21,9 @@ const webpackConfig = (
                         {
                             loader: 'ts-loader',
                         },
-                        {
+                        /*{
                             loader: 'eslint-loader',
-                        }
+                        },*/
                     ],
                 },
             ],
@@ -33,9 +33,9 @@ const webpackConfig = (
         },
         output: {
             filename: '[name].js',
-            path: path.resolve(__dirname, 'dist')
+            path: path.resolve(__dirname, 'dist'),
         },
     };
-}
+};
 
 export default webpackConfig;

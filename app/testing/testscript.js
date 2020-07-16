@@ -1,4 +1,4 @@
 var zero = undefined;
-zero.forEach(nula=>{
+zero.forEach((nula) => {
     alert(nula);
 });
